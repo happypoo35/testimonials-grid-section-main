@@ -1,0 +1,197 @@
+@import url("https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@500;600&display=swap");
+
+.ref {
+  position: absolute;
+  opacity: 0.4;
+  display: none;
+}
+
+$Moderate-violet: hsl(263, 55%, 52%);
+$Very-dark-grayish-blue: hsl(217, 19%, 35%);
+$Very-dark-blackish-blue: hsl(219, 29%, 14%);
+$White: hsl(0, 0%, 100%);
+$Light-gray: hsl(0, 0%, 81%);
+$Light-grayish-blue: hsl(210, 46%, 95%);
+
+$laptop: 1180px;
+$tablet: 768px;
+$mobile: 574px;
+
+@mixin laptop {
+  @media screen and (max-width: $laptop) {
+    @content;
+  }
+}
+@mixin tablet {
+  @media screen and (max-width: $tablet) {
+    @content;
+  }
+}
+@mixin mobile {
+  @media screen and (max-width: $mobile) {
+    @content;
+  }
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Barlow Semi Condensed", sans-serif;
+  font-weight: 500;
+  font-size: 0.85rem;
+  color: $Very-dark-grayish-blue;
+  background: $Light-grayish-blue;
+}
+
+h2,
+h4 {
+  font-weight: 600;
+}
+
+h2 {
+  font-size: 20px;
+  margin-bottom: 1rem;
+}
+
+h4 {
+  font-size: inherit;
+}
+
+.container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.grid-container {
+  margin: 2rem;
+  display: grid;
+  gap: 1.9rem;
+  grid-template-areas:
+    "first first second fifth"
+    "third fourth fourth fifth";
+  max-width: 1110px;
+
+  @include laptop {
+    grid-template-areas:
+      "first first second"
+      "third fourth fourth"
+      "fifth fifth fifth";
+  }
+
+  @include tablet {
+    margin: 4.5rem 1.5rem;
+    gap: 1.5rem;
+    grid-template-areas:
+      "first first"
+      "second third"
+      "fourth fourth"
+      "fifth fifth";
+  }
+
+  @include mobile {
+    margin: 4.5rem 1.5rem;
+    gap: 1.5rem;
+    grid-template-areas:
+      "first"
+      "second"
+      "third"
+      "fourth"
+      "fifth";
+  }
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  max-width: 16rem;
+  background: $White;
+  padding: 1.5rem 2rem 2rem;
+  border-radius: 0.5rem;
+  box-shadow: 2rem 2rem 3rem -2rem rgba($Very-dark-grayish-blue, 0.4);
+
+  @include laptop {
+    max-width: unset;
+  }
+
+  h2 {
+    flex: 1;
+
+    @include laptop {
+      flex: unset;
+    }
+  }
+
+  p {
+    font-size: 13px;
+    line-height: 18px;
+    opacity: 0.7;
+  }
+
+  &:nth-child(1) {
+    grid-area: first;
+    max-width: unset;
+    color: $Light-grayish-blue;
+    background: $Moderate-violet no-repeat top right 5rem
+      url("../images/bg-pattern-quotation.svg");
+
+    @include tablet {
+      background: $Moderate-violet no-repeat top right 1.5rem
+        url("../images/bg-pattern-quotation.svg");
+    }
+
+    img {
+      border: 2px solid rgba($White, 0.2);
+    }
+  }
+
+  &:nth-child(2) {
+    grid-area: second;
+    color: $Light-grayish-blue;
+    background: $Very-dark-grayish-blue;
+  }
+
+  &:nth-child(3) {
+    grid-area: third;
+  }
+
+  &:nth-child(4) {
+    grid-area: fourth;
+    max-width: unset;
+    color: $Light-grayish-blue;
+    background: $Very-dark-blackish-blue;
+
+    img {
+      border: 2px solid $Moderate-violet;
+    }
+  }
+
+  &:nth-child(5) {
+    grid-area: fifth;
+  }
+}
+
+.user {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  height: 2rem;
+  margin-bottom: 1rem;
+
+  img {
+    height: 100%;
+    border-radius: 50%;
+  }
+
+  .name {
+    p {
+      opacity: 0.5;
+      font-size: 0.75rem;
+    }
+  }
+}
